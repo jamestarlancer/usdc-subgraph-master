@@ -1,6 +1,7 @@
 specVersion: 0.0.4
 description: USDC
-repository: https://github.com/centrehq/usdc-subgraph
+repository: https://github.com/jamestarlancer/usdc-subgraph-master
+
 schema:
   file: ./schema.graphql
 dataSources:
