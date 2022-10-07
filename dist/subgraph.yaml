@@ -1,0 +1,33 @@
+specVersion: 0.0.1
+description: USDC
+repository: 'https://github.com/centrehq/usdc-subgraph'
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: FiatTokenV1
+    network: mainnet
+    source:
+      address: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
+      abi: FiatTokenV1
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.1
+      language: wasm/assemblyscript
+      entities:
+        - User
+        - Minter
+        - UserCounter
+        - MinterCounter
+        - TxCounter
+      abis:
+        - name: FiatTokenV1
+          file: FiatTokenV1/abis/FiatTokenV1.json
+      eventHandlers:
+        - event: 'Burn(address,uint256)'
+          handler: handleBurn
+        - event: 'Mint(address,address,uint256)'
+          handler: handleMint
+        - event: 'Transfer(address,address,uint256)'
+          handler: handleTransfer
+      file: FiatTokenV1/FiatTokenV1.wasm
